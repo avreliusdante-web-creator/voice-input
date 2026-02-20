@@ -42,8 +42,6 @@ Browser extension: convert voice to text and send it with one click in open soci
 
 - **[Портфолио (принцип работы)](docs/portfolio.html)** — полное описание расширения, архитектура, технологии. Откройте `docs/portfolio.html` в браузере.
 - **[Инструкция для пользователей](docs/USER_GUIDE.md)** — правила использования, два способа работы, решение проблем.
-- **[Публикация в магазинах](docs/PUBLISHING_GUIDE.md)** — упаковка, Chrome Web Store, Edge Add-ons, монетизация.
-- **[Выложить на GitHub](docs/GITHUB_SETUP.md)** — пошаговый план: Git, создание репозитория, первый пуш.
 - **[Лицензии и донаты](docs/LICENSES.md)** — какие лицензии используются в проекте и разрешают ли они донаты.
 
 **Ссылка на донат:** в панели расширения есть кнопка «Поддержать разработку» (иконка сердца). Свою ссылку (Donation Alerts, Boosty, Patreon и т.д.) задайте в `content.js`: константа `DONATE_URL` в начале файла.
