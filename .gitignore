@@ -1,0 +1,31 @@
+# Иконки генерируются через create-icons.html — можно не коммитить, если создаёте локально
+# Раскомментируйте следующую строку, если не храните PNG в репозитории:
+# icons/*.png
+
+# Системные и редакторы
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Логи и временные файлы
+*.log
+*.tmp
+.cache/
+
+# Сборки и упаковки (если будете собирать ZIP отдельно)
+dist/
+*.zip
+
+# Node (если позже добавите скрипты)
+node_modules/
+npm-debug.log*
+package-lock.json
+yarn.lock

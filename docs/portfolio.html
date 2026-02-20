@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice input — Extension portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f12;
+      --surface: #16161b;
+      --card: #1a1a21;
+      --accent: #00c9a7;
+      --accent-muted: rgba(0, 201, 167, 0.15);
+      --text: #f0f0f5;
+      --text-muted: #8b8b9a;
+      --border: #2a2a34;
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      width: 72px; height: 72px;
+      margin: 0 auto 20px;
+      background: linear-gradient(145deg, var(--accent) 0%, #00a88a 100%);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px var(--accent-muted);
+    }
+    .logo svg { width: 40px; height: 40px; color: #0a0a0e; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .tagline { color: var(--text-muted); font-size: 1.1rem; }
+    section {
+      margin-bottom: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2::before { content: ''; width: 4px; height: 1.2em; background: var(--accent); border-radius: 2px; }
+    p { margin-bottom: 12px; color: var(--text-muted); }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { margin: 12px 0 12px 24px; color: var(--text-muted); }
+    li { margin-bottom: 6px; }
+    .flow {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+    .flow ol { margin-left: 20px; }
+    .tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tech span {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .screens { margin-top: 16px; display: grid; gap: 12px; }
+    .screens div {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .screens strong { color: var(--text); }
+    footer {
+      text-align: center;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </div>
+      <h1>Voice input</h1>
+      <p class="tagline">Browser extension: voice → text in social media and messengers</p>
+    </header>
+
+    <section>
+      <h2>О проекте</h2>
+      <p>
+        <strong>Voice input</strong> — Chrome and Edge extension that converts speech to text
+        и позволяет быстро вставлять его в поля ввода на сайтах (ВКонтакте, Telegram Web, WhatsApp Web,
+        Twitter/X, Facebook, Instagram, Gmail, Outlook и др.). Не нужно переключаться в другие приложения:
+        говорите прямо на странице — текст появляется в панели и одной кнопкой вставляется в открытый диалог.
+      </p>
+      <p>
+        Расширение не отправляет голос на сторонние серверы разработчика: распознавание речи выполняется
+        через встроенный в браузер <strong>Web Speech API</strong> (в Chrome/Edge — сервисы Google).
+        Локально хранятся только файлы расширения; персональные данные не собираются.
+      </p>
+    </section>
+
+    <section>
+      <h2>Принцип работы</h2>
+      <p>Расширение работает только на указанных в манифесте сайтах (VK, Telegram Web, WhatsApp Web, Twitter/X, Facebook, Instagram, LinkedIn, Gmail, Outlook и др.).</p>
+      <div class="flow">
+        <strong>Content script (кнопка и панель на странице)</strong><br>
+        На каждом из поддерживаемых сайтов внедряется скрипт, который:
+      </div>
+      <ol>
+        <li>Добавляет в правый нижний угол экрана <strong>плавающую кнопку</strong> с иконкой микрофона.</li>
+        <li>По клику открывает <strong>панель</strong>: выбор языка, кнопка записи, поле с текстом, кнопки-иконки (Исправить, Копировать, Очистить, Вставить в диалог), переключатель светлой/тёмной темы.</li>
+        <li>Перед записью запрашивает доступ к микрофону через <code>getUserMedia({ audio: true })</code>, затем запускает <code>SpeechRecognition</code>. Распознавание непрерывное (continuous), с промежуточными (interim) и финальными (final) результатами; финальный текст добавляется в «зафиксированную» строку, чтобы не дублировать слова.</li>
+        <li>По кнопке «Вставить в диалог» текст вставляется в поле ввода на странице (приоритет — активный элемент или поле внизу экрана с подходящим placeholder/ролью).</li>
+      </ol>
+      <p>
+        Иконка расширения в панели браузера не открывает отдельное окно; весь интерфейс — только кнопка и панель на самих сайтах.
+      </p>
+    </section>
+
+    <section>
+      <h2>Технологии</h2>
+      <p>Расширение построено на стандартных веб-технологиях и API браузера.</p>
+      <div class="tech">
+        <span>Manifest V3</span>
+        <span>Chrome Extension API</span>
+        <span>Web Speech API (SpeechRecognition)</span>
+        <span>getUserMedia (audio)</span>
+        <span>HTML5 / CSS3</span>
+        <span>Vanilla JavaScript (ES5+ в content script)</span>
+      </div>
+      <p style="margin-top: 16px;">
+        Разрешение: <code>activeTab</code>. Дополнительные страницы или фоновый скрипт не используются.
+      </p>
+    </section>
+
+    <section>
+      <h2>Основные возможности</h2>
+      <ul>
+        <li>Распознавание речи в реальном времени (непрерывный режим, промежуточные и финальные результаты).</li>
+        <li>Много языков в панели: русский, украинский, английский, немецкий, французский, испанский, итальянский, португальский, китайский, японский, корейский и др.</li>
+        <li>Автоисправление пунктуации и заглавных букв после точки/вопросов/восклицаний.</li>
+        <li>Копирование в буфер обмена и вставка текста в поле сообщения на странице (с фокусом на целевое поле).</li>
+        <li>Поиск поля ввода: приоритет активному элементу, затем полям в нижней части экрана и с подходящими placeholder/role.</li>
+        <li>Стиль glassmorphism, адаптация под светлую/тёмную тему страницы, кнопка смены темы; иконки-кнопки с подсказками (title), анимация открытия/закрытия панели.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Экраны и сценарии</h2>
+      <div class="screens">
+        <div><strong>Плавающая кнопка</strong> — в правом нижнем углу страницы (только на поддерживаемых сайтах). Клик открывает панель.</div>
+        <div><strong>Панель на сайте</strong> — выбор языка, кнопка записи, поле текста, иконки: Исправить, Копировать, Очистить, Вставить в диалог; в шапке — смена темы (светлая/тёмная) и закрытие.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ограничения и требования</h2>
+      <ul>
+        <li>Работает в Chrome и Edge (Chromium); в Firefox Web Speech API по умолчанию отключён.</li>
+        <li>Требуется доступ к микрофону и (для распознавания в Chrome/Edge) интернет (используются сервисы браузера).</li>
+        <li>Расширение отображается только на сайтах, перечисленных в манифесте; на остальных страницах кнопка и панель не появляются.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Voice input — extension portfolio. Version 1.0. Description reflects current implementation.
+    </footer>
+  </div>
+</body>
+</html>

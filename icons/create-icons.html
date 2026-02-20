@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Create icons — Voice input</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; background: #1a1a21; color: #f0f0f5; }
+    h1 { font-size: 1.25rem; margin-bottom: 8px; }
+    p { color: #8b8b9a; margin-bottom: 16px; }
+    button { padding: 12px 20px; background: #00c9a7; color: #0a0a0e; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #00e5b8; }
+    #preview { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+    #preview canvas { border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  </style>
+</head>
+<body>
+  <h1>Icons for extension «Voice input»</h1>
+  <p>Design: microphone + text lines (voice to text). Extension accent color: teal.</p>
+  <button id="create">Download icons (16, 48, 128 px)</button>
+  <div id="preview"></div>
+  <script>
+    function drawIcon(ctx, size) {
+      const pad = size * 0.12;
+      const w = size - pad * 2;
+      const h = size - pad * 2;
+      const x = pad;
+      const y = pad;
+      const r = Math.min(w, h) * 0.22;
+
+      // Background — rounded rect with teal gradient
+      const grad = ctx.createLinearGradient(0, 0, size, size);
+      grad.addColorStop(0, '#00c9a7');
+      grad.addColorStop(1, '#00a88a');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, r);
+      ctx.fill();
+
+      // Light outline
+      ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+      ctx.lineWidth = Math.max(1, size * 0.02);
+      ctx.stroke();
+
+      // Same silhouette as in the extension: circle (head) + stem + base (viewBox 0 0 24 24)
+      const cx = size / 2;
+      const headY = size * (8 / 24);   // circle cy=8
+      const headR = size * (4 / 24);    // r=4
+      const stemTop = size * (12 / 24);
+      const stemBottom = size * (19 / 24);
+      const baseY = stemBottom;
+      const baseHalf = size * (4 / 24); // line from 8 to 16
+      const stemW = Math.max(2, size * 0.12);
+
+      // 1. Head — circle
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.beginPath();
+      ctx.arc(cx, headY, headR, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. Stem — vertical rectangle
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.fillRect(cx - stemW / 2, stemTop, stemW, stemBottom - stemTop);
+
+      // 3. Base — thick horizontal line
+      ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+      ctx.lineWidth = Math.max(2, size * 0.08);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(cx - baseHalf, baseY);
+      ctx.lineTo(cx + baseHalf, baseY);
+      ctx.stroke();
+
+      // 4. Text lines at bottom (notebook)
+      const lineY = size * 0.88;
+      const lineH = Math.max(1, size * 0.04);
+      const lineGap = size * 0.05;
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      [0.3, 0.65, 1].forEach(function (width, i) {
+        const lw = width * (size * 0.35);
+        const lx = cx - lw / 2;
+        const ly = lineY - i * (lineH + lineGap);
+        ctx.fillRect(lx, ly, lw, lineH);
+      });
+    }
+
+    function createAndDownload() {
+      var sizes = [16, 48, 128];
+      var preview = document.getElementById('preview');
+      preview.innerHTML = '';
+      sizes.forEach(function (s) {
+        var c = document.createElement('canvas');
+        c.width = c.height = s;
+        var ctx = c.getContext('2d');
+        drawIcon(ctx, s);
+        var a = document.createElement('a');
+        a.download = 'icon' + s + '.png';
+        a.href = c.toDataURL('image/png');
+        a.click();
+        var wrap = document.createElement('div');
+        var label = document.createElement('div');
+        label.textContent = s + '×' + s;
+        label.style.cssText = 'font-size: 12px; color: #8b8b9a; margin-top: 4px;';
+        wrap.appendChild(c.cloneNode(true));
+        wrap.appendChild(label);
+        preview.appendChild(wrap);
+      });
+      alert('Icons saved to Downloads. Move icon16.png, icon48.png, icon128.png into the extension icons folder.');
+    }
+
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+        this.moveTo(x + r, y);
+        this.lineTo(x + w - r, y);
+        this.quadraticCurveTo(x + w, y, x + w, y + r);
+        this.lineTo(x + w, y + h - r);
+        this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        this.lineTo(x + r, y + h);
+        this.quadraticCurveTo(x, y + h, x, y + h - r);
+        this.lineTo(x, y + r);
+        this.quadraticCurveTo(x, y, x + r, y);
+      };
+    }
+
+    document.getElementById('create').onclick = createAndDownload;
+  </script>
+</body>
+</html>
